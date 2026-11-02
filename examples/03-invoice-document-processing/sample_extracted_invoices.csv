@@ -1,0 +1,7 @@
+invoice_no,vendor,invoice_date,amount,po_number,po_amount
+INV-5001,Acme Supplies,2026-10-02,1200.00,PO-9001,1200.00
+INV-5002,Globex Medical,2026-10-03,4500.00,PO-9002,4450.00
+INV-5003,Unknown Vendor LLC,2026-10-05,800.00,PO-9003,800.00
+INV-5004,Initech Services,2026-10-06,2300.00,PO-9099,
+INV-5005,Acme Supplies,2026-10-08,1900.00,PO-9005,1500.00
+INV-5001,Acme Supplies,2026-10-02,1200.00,PO-9001,1200.00

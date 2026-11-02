@@ -1,0 +1,6 @@
+region,revenue,margin_pct,pct_of_target,status
+North,120000,35.0,104.3,On track
+South,95000,32.6,95.0,Watch
+East,143000,35.7,110.0,On track
+West,88000,30.7,97.8,Watch
+Total,446000,33.9,101.1,On track

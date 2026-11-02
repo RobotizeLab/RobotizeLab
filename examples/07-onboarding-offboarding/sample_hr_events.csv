@@ -1,0 +1,4 @@
+event,employee_id,name,department,manager,effective_date
+Joiner,E3101,Maya Patel,Finance,J. Brooks,2026-11-02
+Joiner,E3102,Omar Hassan,Sales,L. Chen,2026-11-02
+Leaver,E2044,Tom Wright,IT,R. Diaz,2026-10-30

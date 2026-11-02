@@ -1,0 +1,6 @@
+email_id,ticket_id,category,queue,priority,extracted_reference,auto_reply_sent
+M001,T-3001,Refund,Billing,Normal,Order 48213,Yes
+M002,T-3002,Access,IT Help,High,Customer C-7782,Yes
+M003,T-3003,Billing,Billing,Normal,Invoice 9921,Yes
+M004,T-3004,Cancellation,Retention,High,Order 50177,Yes
+M005,T-3005,Unclassified,Human review,Normal,,Yes

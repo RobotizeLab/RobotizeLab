@@ -1,0 +1,5 @@
+check_time,item,measured_value,threshold,unit
+2026-10-28 06:15,Nightly sales file arrived,No,Yes,flag
+2026-10-28 06:15,Orders queue backlog,640,500,items
+2026-10-28 06:15,Daily load job status,Failed,Success,status
+2026-10-28 06:15,File server disk used,72,85,percent

@@ -1,0 +1,13 @@
+employee_id,action,detail,when
+E3101,Create account,maya.patel@company.com,2026-10-30
+E3101,Assign access,"Email, Teams, Intranet, ERP-Finance, SharePoint-Finance",2026-11-02
+E3101,Equipment request,Laptop and badge,2026-10-30
+E3101,Notify,Manager J. Brooks and new hire,2026-10-30
+E3102,Create account,omar.hassan@company.com,2026-10-30
+E3102,Assign access,"Email, Teams, Intranet, CRM-Sales, SharePoint-Sales",2026-11-02
+E3102,Equipment request,Laptop and badge,2026-10-30
+E3102,Notify,Manager L. Chen and new hire,2026-10-30
+E2044,Disable account,Last working day,2026-10-30
+E2044,Remove access,"All groups incl. Admin-Tools, SharePoint-IT",2026-10-30
+E2044,Equipment return ticket,Laptop and badge,2026-10-30
+E2044,Notify,HR and security,2026-10-30

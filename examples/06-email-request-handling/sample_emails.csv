@@ -1,0 +1,6 @@
+email_id,from,subject,body
+M001,sam@example.com,Refund request,"Hi, I need a refund for order #48213. The item arrived damaged."
+M002,lee@example.com,Locked out,"I forgot my password and my account is locked. Customer ID C-7782."
+M003,pat@example.com,Question about invoice,"Please resend invoice 9921, our payment is due Friday."
+M004,kim@example.com,Cancel my plan,"I would like to cancel my subscription, order #50177."
+M005,jo@example.com,Hello,"Do you have an office in Denver?"

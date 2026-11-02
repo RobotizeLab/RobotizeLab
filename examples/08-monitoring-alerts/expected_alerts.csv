@@ -1,0 +1,5 @@
+item,breach,alert_to,automatic_action,escalate_after
+Nightly sales file arrived,Yes,Data team,Re-request from source,30 min
+Orders queue backlog,Yes,Operations lead,None,30 min
+Daily load job status,Yes,Data team,Restart once,30 min
+File server disk used,No,,,

@@ -1,0 +1,11 @@
+patient_id,first_name,last_name,dob,email,zip,status
+P1001,Anna,Lopez,1985-03-12,anna.lopez@example.com,57104,Active
+P1002,Ben,Carter,1990-07-30,ben.carter@example,57105,Active
+P1003,Chloe,Nguyen,1978-11-02,chloe.nguyen@example.com,57106,Inactive
+,Daniel,Reed,1982-01-19,daniel.reed@example.com,57104,Active
+P1001,Ella,Brooks,1995-05-23,ella.brooks@example.com,57107,Active
+P1006,Frank,Hill,1969-09-08,frank.hill@example.com,57108,Active
+P1007,Grace,Kim,2031-02-14,grace.kim@example.com,57109,Active
+P1008,Henry,Adams,1988-12-01,henry.adams@example.com,57110,Inactive
+P1009,Isla,Young,1993-04-17,isla.young@example.com,5711,Active
+P1010,Jack,Moore,1975-06-25,jack.moore@example.com,57112,Active

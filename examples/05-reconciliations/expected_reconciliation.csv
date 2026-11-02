@@ -1,0 +1,7 @@
+reference,bank_amount,gl_amount,result,difference
+TX-1001,500.00,500.00,Matched,0.00
+TX-1002,1250.50,1250.00,Amount difference,0.50
+TX-1003,300.00,300.00,Matched,0.00
+TX-1004,89.99,,Missing in GL,89.99
+TX-1005,,415.75,Missing in bank,-415.75
+TX-1006,2100.00,2100.00,Matched,0.00

@@ -1,0 +1,6 @@
+row,patient_id,rule,issue
+2,P1002,R4,Invalid email format
+4,,R1,Missing patient_id
+5,P1001,R2,Duplicate patient_id
+7,P1007,R3,Date of birth is in the future
+9,P1009,R5,Zip is not 5 digits
