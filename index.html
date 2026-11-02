@@ -492,7 +492,7 @@ footer a:hover{color:#5eead4}
       <div class="eyebrow">Contact</div>
       <h2>Let's talk about your first automation</h2>
       <p>Tell us about a process that takes too much time. We will respond within one business day.</p>
-      <p><strong>Email:</strong> your.name@company.com</p>
+      <p><strong>Email:</strong> <a href="mailto:robotizelab@gmail.com">robotizelab@gmail.com</a></p>
       <p><strong>Phone:</strong> <a href="tel:+16055926403">(605) 592-6403</a></p>
       <p><strong>Location:</strong> Sioux Falls, South Dakota, USA</p>
     </div>
@@ -527,7 +527,7 @@ footer a:hover{color:#5eead4}
 <footer>
   <div class="container">
     <div class="fcols">
-      <div><div class="fbrand">Robotize<span>Lab</span></div><p>Your business process automation partner. Practical automation, flexible solutions, and support you can count on.</p></div>
+      <div><div class="fbrand"><a href="#top" style="color:inherit;text-decoration:none">Robotize<span>Lab</span></a></div><p>Your business process automation partner. Practical automation, flexible solutions, and support you can count on.</p></div>
       <div><h4>Learn more</h4><ul><li><a href="faq.html">FAQ</a></li><li><a href="examples.html">Real examples</a></li><li><a href="engagement.html">Engagement options</a></li><li><a href="technologies.html">Technologies</a></li></ul></div>
       <div><h4>Company</h4><ul><li><a href="about.html">About us</a></li><li><a href="support.html">Support expectations</a></li><li><a href="ownership.html">Project ownership</a></li><li><a href="booking.html">Book a consultation</a></li></ul></div>
       <div><h4>Legal</h4><ul><li><a href="privacy.html">Privacy policy</a></li><li><a href="terms.html">Terms of service</a></li><li><a href="cookies.html">Cookie policy</a></li></ul></div>
@@ -701,11 +701,13 @@ grid.addEventListener('click',e=>{
 });
 /* Process assessment scoring (mirrors the Excel Process Assessment Tool) */
 const $=id=>document.getElementById(id);
-// Set to your backend URL (HTTPS) that accepts a JSON POST and stores the lead.
-const LEAD_ENDPOINT='';
+const W3F_KEY='3cc1ac59-52f9-44f9-8bf7-1ba4dcd5cbaa';
+function w3f(subject,data){
+  return fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(Object.assign({access_key:W3F_KEY,subject:'RobotizeLab: '+subject,from_name:'RobotizeLab website'},data))}).then(r=>r.json()).then(j=>{if(!j.success)throw new Error(j.message||'failed')});
+}
 function saveLead(lead){
-  if(!LEAD_ENDPOINT){console.info('Lead not sent: LEAD_ENDPOINT is not configured');return}
-  fetch(LEAD_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(lead)}).catch(()=>{});
+  const d={};Object.keys(lead).forEach(k=>d[k]=String(lead[k]));
+  w3f('Assessment submission',d).catch(()=>{});
 }
 const stabScore={'No change expected':0,'Very Small Change':0.2,'Some change':0.4,'Medium Change':0.8,'Significant Change':null};
 function structScore(p){return p>=80?0:p>=60?0.4:p>=40?0.7:1}
@@ -908,8 +910,18 @@ function syncTopic(){
 topicSel.addEventListener('change',syncTopic);
 document.getElementById('f').addEventListener('submit',function(e){
   e.preventDefault();
-  document.getElementById('msg').style.display='block';
-  this.reset();attFiles=[];attErr.textContent='';renderAtt();syncTopic();
+  const form=this,btn=form.querySelector('button[type=submit]'),msg=document.getElementById('msg');
+  const v=form.querySelectorAll('input:not([type=file]),select,textarea');
+  const data={name:v[0].value.trim(),email:v[1].value.trim(),phone:v[2].value.trim(),company:v[3].value.trim(),topic:topicSel.value,message:msgBox.value.trim()};
+  if(topicSel.value==='Existing automation')data.reference=refNo.value.trim();
+  if(attFiles.length)data.attachments_selected=attFiles.map(f=>f.name).join(', ')+' (files are not uploaded; we will ask you to email them)';
+  btn.disabled=true;msg.style.display='none';
+  w3f('Contact request: '+topicSel.value,data).then(()=>{
+    msg.textContent='Thank you! We will be in touch shortly.';msg.style.color='';msg.style.display='block';
+    form.reset();attFiles=[];attErr.textContent='';renderAtt();syncTopic();
+  }).catch(()=>{
+    msg.textContent='Sorry, something went wrong. Please try again or call (605) 592-6403.';msg.style.color='#b91c1c';msg.style.display='block';
+  }).finally(()=>{btn.disabled=false});
 });
 </script>
 </body>
