@@ -14,44 +14,42 @@
   <p>See how we approach automation projects, from the first conversation to a working solution in production.</p>
 </div></div>
 <main><div class="container">
-  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:32px;align-items:center;margin-bottom:28px">
+  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:32px;align-items:start;margin-bottom:28px">
     <div>
-      <div class="eyebrow">1-minute presentation</div>
-      <h2 style="margin-top:0">Manual vs. bot: see the difference in one minute</h2>
+      <div class="eyebrow">See it in action</div>
+      <h2 style="margin-top:0">Manual vs. bot: see the difference side by side</h2>
       <p>Watch the same process run two ways: by hand, and with a RobotizeLab automation. See how repetitive, rule-based work turns into faster, more accurate results, with people free to focus on what matters.</p>
-      <ul class="checks"><li>Side-by-side comparison of a real process</li><li>Clear view of time and effort saved</li><li>Short, simple and to the point</li></ul>
+      <p>Most teams know which tasks eat up their day, but it is hard to picture what automation would change. This short walkthrough makes it visible: the same steps, the same data, and a very different experience for the people involved.</p>
+      <ul class="checks"><li>Side-by-side comparison of a real process</li><li>Clear view of time and effort saved</li><li>Fewer manual steps and fewer chances for error</li><li>Consistent results on every run</li><li>Short, simple and to the point</li></ul>
+      <p>Like what you see? Ask how the same approach could work for your own process.</p>
     </div>
     <div id="vidBox" style="background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:20px;box-shadow:0 8px 30px rgba(15,23,42,.06)">
       <form id="vidForm" class="book" style="box-shadow:none;border:0;padding:0">
         <h3 style="margin:0 0 4px">Watch the 1-minute video</h3>
-        <p style="margin:0 0 10px;color:var(--muted);font-size:.92rem">Tell us where to reach you and the video plays right here.</p>
-        <label>Your name<input id="vname" required maxlength="100" autocomplete="name"></label>
-        <label>Work email<input id="vemail" type="email" required maxlength="150" autocomplete="email"></label>
+        <p style="margin:0 0 10px;color:var(--muted);font-size:.92rem">Tell us where to reach you, or just press Watch now. The video plays either way.</p>
+        <label>Your name<input id="vname" maxlength="100" autocomplete="name"></label>
+        <label>Work email<input id="vemail" type="email" maxlength="150" autocomplete="email"></label>
         <label>Company name<input id="vco" maxlength="150" autocomplete="organization"></label>
         <button class="btn btn-primary" type="submit">Watch now</button>
-        <div id="vidErr" style="display:none;color:#b91c1c;font-size:.9rem"></div>
+        <div id="vidMsg" style="display:none;font-size:.9rem"></div>
         <p style="font-size:.8rem;color:var(--muted);margin:0">By continuing, you agree to our <a href="privacy.html" style="color:#2563eb">Privacy policy</a>.</p>
       </form>
-      <div id="vidWrap" style="display:none">
-        <video id="vid" controls playsinline preload="none" controlslist="nodownload" style="width:100%;border-radius:12px;background:#0f172a"><source src="ProcessComparison_Manual_vs_Bot_v2_web.mp4" type="video/mp4">Your browser does not support video playback.</video>
-      </div>
+      <video id="vid" controls playsinline preload="none" controlslist="nodownload" style="display:none;width:100%;border-radius:12px;background:#0f172a;margin-top:16px"><source src="ProcessComparison_Manual_vs_Bot_v2_web.mp4" type="video/mp4">Your browser does not support video playback.</video>
     </div>
   </div>
 <script>
 (function(){
-  const K='3cc1ac59-52f9-44f9-8bf7-1ba4dcd5cbaa',f=document.getElementById('vidForm'),w=document.getElementById('vidWrap'),v=document.getElementById('vid'),err=document.getElementById('vidErr');
-  function show(play){f.style.display='none';w.style.display='block';v.preload='metadata';if(play)v.play().catch(()=>{})}
-  try{if(localStorage.getItem('rl_video')==='1')show(false)}catch(e){}
+  const K='3cc1ac59-52f9-44f9-8bf7-1ba4dcd5cbaa',f=document.getElementById('vidForm'),msg=document.getElementById('vidMsg');
   f.addEventListener('submit',function(e){
     e.preventDefault();
-    const b=f.querySelector('button[type=submit]');b.disabled=true;err.style.display='none';
-    fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({access_key:K,subject:'RobotizeLab: Video viewer',from_name:'RobotizeLab website',name:f.vname.value.trim(),email:f.vemail.value.trim(),company:f.vco.value.trim(),video:'Manual vs Bot (1 minute)'})})
-      .then(r=>r.json()).then(j=>{if(!j.success)throw 0;try{localStorage.setItem('rl_video','1')}catch(e){}show(true)})
-      .catch(()=>{err.textContent='Sorry, something went wrong. Please try again.';err.style.display='block'})
-      .finally(()=>{b.disabled=false});
-  });
+    const n=f.vname.value.trim(),m=f.vemail.value.trim(),c=f.vco.value.trim(),v=document.getElementById('vid');
+    v.style.display='block';v.preload='auto';v.scrollIntoView({behavior:'smooth',block:'nearest'});v.play().catch(()=>{});
+    if(!n&&!m&&!c)return;
+    fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({access_key:K,subject:'RobotizeLab: Video viewer',from_name:'RobotizeLab website',name:n,email:m,company:c,video:'Manual vs Bot (1 minute)'})}).catch(()=>{});
+    f.reset();  });
 })();
-</script>  <div class="grid">
+</script>  <div class="empty"><b>Want to hear about our real cases?</b>For real cases and examples from our projects, <a href="index.html#contact" style="color:#2563eb;text-decoration:none">contact us</a> and we will gladly walk you through them.</div>
+  <div class="grid">
     <div class="card"><div class="icon">🎯</div><h3>The challenge</h3><p>What the team was doing manually, and the time, errors and effort it cost.</p></div>
     <div class="card"><div class="icon">⚙️</div><h3>The solution</h3><p>What we built and how it fits with your existing systems and applications.</p></div>
     <div class="card"><div class="icon">📈</div><h3>The result</h3><p>The time saved, errors reduced, and what happens next to keep improving.</p></div>
