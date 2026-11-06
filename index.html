@@ -183,6 +183,14 @@ details.att small{display:block;color:var(--muted);font-size:.8rem;margin:6px 0 
 .as-result{position:static}
 .as-form{padding:24px}
 .as-back{background:none;border:0;color:var(--blue);font:inherit;font-weight:600;cursor:pointer;margin-top:12px;display:block;width:100%;text-align:center}
+.as-i{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;margin-left:8px;border:1.5px solid #2563eb;border-radius:50%;background:#fff;color:#2563eb;font:italic 700 .8rem Georgia,serif;cursor:pointer;vertical-align:middle;padding:0;line-height:1}
+.as-i:hover,.as-i.on{background:#2563eb;color:#fff}
+.hint-modal{position:fixed;inset:0;background:rgba(15,23,42,.5);display:flex;align-items:center;justify-content:center;z-index:99999;padding:20px}
+.hint-modal[hidden]{display:none}
+.hint-card{background:#fff;border-radius:18px;max-width:560px;width:100%;max-height:85vh;overflow:auto;padding:28px;box-shadow:0 20px 50px rgba(0,0,0,.3)}
+.hint-card h3{margin:0 0 14px;font-size:1.1rem;color:#0f3a6d}
+.hint-body p{margin:0 0 14px;color:#1e293b;line-height:1.6;font-size:.95rem}
+.hint-close{background:#f5a800;color:#111;border:0;border-radius:999px;padding:12px 28px;font:700 1rem inherit;cursor:pointer}
 .who-grid,.data-grid,.pw-grid{grid-template-columns:repeat(4,1fr)}
 .who-grid{grid-template-columns:repeat(5,1fr);gap:16px}
 @media(max-width:1000px){.who-grid,.data-grid,.pw-grid{grid-template-columns:repeat(2,1fr)}}
@@ -445,9 +453,6 @@ footer a:hover{color:#5eead4}
 
       <div class="as-result" id="asResult" hidden></div>
     </div>
-    <p class="as-dl">Prefer Excel? Download the
-      <a href="Process%20Assessment%20Tool%20-%20%20Introduction%20to%20Automation.xlsx" download>assessment tool</a> or a
-      <a href="Process%20Assessment%20Tool%20-%20Onboarding%20Process%20-%20Solution.xlsx" download>worked example (Onboarding process)</a>.</p>
   </div>
 </div>
 
@@ -923,6 +928,34 @@ document.getElementById('f').addEventListener('submit',function(e){
     msg.textContent='Sorry, something went wrong. Please try again or call (605) 592-6403.';msg.style.color='#b91c1c';msg.style.display='block';
   }).finally(()=>{btn.disabled=false});
 });
-</script>
+const AS_HINTS={
+a_input:['Digital: any data that can be stored on a machine (server, laptop, IoT devices).','Structured data has a predictable format and fixed fields (for example an Excel cell or a form field) and is easy to search. Think of Excel files, tables with a fixed structure, or databases you can query.','Unstructured data may have its own internal structure, but it is not highly predictable. Examples: web logs, multimedia content, customer service interactions and social media data.'],
+a_pstab:['Think about changes such as:','Legislative changes coming up that could change the rules or logic of the process.','Organizational changes, such as moving parts of the process between roles or departments.','Industry shifts that could change the business model and so the rules of the process.'],
+a_astab:['Think about more than the applications themselves: interfaces, menus and reports can change too.'],
+a_emp:['How many employees currently perform this process?'],
+a_vol:['The number of transactions each time the process runs. For example, if it happens weekly, enter the average volume in a week.'],
+a_aht:['The average time it takes to run the process once, per transaction, in minutes. For example, if it takes 4 hours, enter 240.'],
+a_logic:['Linear: the process has no decisions to take.','Simple decisions: yes/no type decisions.','Complex decisions: judgement is needed, or rules are hard to define.'],
+a_exc:['The share of cases where you cannot complete the whole process, either because you need input from another person or because the case is not covered by a clear rule.'],
+a_apps:['The number of applications you use to complete the process.'],
+a_thin:['Applications accessed through a virtual machine or thin client (for example Citrix) can be harder to automate.'],
+a_dig:['Digital: any data that can be stored on a machine (server, laptop, IoT devices).'],
+a_str:['Structured data has a predictable format and fixed fields, and is easy to search (Excel files, fixed tables, databases).','Example: if your inputs are 5 Excel files or ERP reports, 100% is structured. If they are 4 Excel files or ERP reports and 1 email text, 80% is structured.']
+};
+const hm=document.createElement('div');hm.className='hint-modal';hm.hidden=true;
+hm.innerHTML='<div class="hint-card" role="dialog" aria-modal="true"><h3></h3><div class="hint-body"></div><button type="button" class="hint-close">Close</button></div>';
+document.body.appendChild(hm);
+const hClose=()=>{hm.hidden=true};
+hm.addEventListener('click',e=>{if(e.target===hm)hClose()});
+hm.querySelector('.hint-close').addEventListener('click',hClose);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')hClose()});
+Object.keys(AS_HINTS).forEach(id=>{
+  const el=document.getElementById(id);if(!el)return;
+  const lab=el.closest('label'),btn=document.createElement('button');
+  const title=lab.firstChild.textContent.trim();
+  btn.type='button';btn.className='as-i';btn.textContent='i';btn.setAttribute('aria-label','More details');
+  btn.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();hm.querySelector('h3').textContent=title;hm.querySelector('.hint-body').innerHTML=AS_HINTS[id].map(s=>'<p>'+s+'</p>').join('');hm.hidden=false});
+  const row=document.createElement('span');lab.insertBefore(row,lab.firstChild);row.appendChild(row.nextSibling);row.appendChild(btn);
+});</script>
 </body>
 </html>
