@@ -185,6 +185,8 @@ details.att small{display:block;color:var(--muted);font-size:.8rem;margin:6px 0 
 .as-back{background:none;border:0;color:var(--blue);font:inherit;font-weight:600;cursor:pointer;margin-top:12px;display:block;width:100%;text-align:center}
 .as-i{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;margin-left:8px;border:1.5px solid #2563eb;border-radius:50%;background:#fff;color:#2563eb;font:italic 700 .8rem Georgia,serif;cursor:pointer;vertical-align:middle;padding:0;line-height:1}
 .as-i:hover,.as-i.on{background:#2563eb;color:#fff}
+.as-ins{margin:0 0 16px;padding:12px 14px;background:#eff6ff;border-left:3px solid #2563eb;border-radius:8px;font-size:.9rem;color:#334155;line-height:1.55}
+.as-ii{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border:1.5px solid #2563eb;border-radius:50%;color:#2563eb;font:italic 700 .7rem Georgia,serif;vertical-align:middle}
 .hint-modal{position:fixed;inset:0;background:rgba(15,23,42,.5);display:flex;align-items:center;justify-content:center;z-index:99999;padding:20px}
 .hint-modal[hidden]{display:none}
 .hint-card{background:#fff;border-radius:18px;max-width:560px;width:100%;max-height:85vh;overflow:auto;padding:28px;box-shadow:0 20px 50px rgba(0,0,0,.3)}
@@ -417,6 +419,7 @@ footer a:hover{color:#5eead4}
                 <label>Phone number (optional)<input id="a_phone" type="tel" inputmode="numeric" maxlength="14" autocomplete="tel-national" pattern="\(\d{3}\) \d{3}-\d{4}" title="Format: (000) 000-0000" placeholder="(000) 000-0000"></label>
         <small style="color:var(--muted);font-weight:400">We keep these details for internal use only, to follow up on your assessment. Please do not enter personal or patient data.</small>
         <h3>1. About the process</h3>
+        <p class="as-ins"><strong>Instructions:</strong> Pick a task or process that you consider to be repetitive. Then, for each question, type a value or select an option from the dropdown. Use the <span class="as-ii">i</span> icon beside a question for more details. Your results appear at the end of the assessment.</p>
         <label>Process name (optional)<input id="a_name" placeholder="e.g. Monthly invoice reconciliation"></label>
         <label>What do your data inputs mostly look like?
           <select id="a_input"><option>Digital and Structured</option><option>Digital and Unstructured</option><option>Non Digital and Structured</option><option>Not digital and Unstructured</option></select></label>
